@@ -5,13 +5,22 @@ import Sushi from '../components/Sushi'
 class SushiContainer extends React.Component {
 
   state = {
-    counter: 0,
-    clicked: false
+    start: 0,
+    end: 4
+  }
+
+  updateState = (start, end) => {
+    this.setState({
+      start: start,
+      end: end
+    })
   }
 
 
+
+
   renderSushis = () => {
-    return this.props.sushis.map(sushiObj => <Sushi key={sushiObj.id} sushi={sushiObj}/>)
+    return this.props.sushis.slice(this.state.start, this.state.end).map(sushiObj => <Sushi key={sushiObj.id} sushi={sushiObj}/>)
   }
 
   render(){
@@ -19,12 +28,12 @@ class SushiContainer extends React.Component {
     return (
       <Fragment>
         <div className="belt">
-          <MoreButton />
+          {this.renderSushis()}
+          <MoreButton start={this.state.start} end={this.state.end} updateState={this.updateState} />
         </div>
 
       </Fragment>
     )
-
   }
 }
 

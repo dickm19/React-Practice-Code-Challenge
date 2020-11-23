@@ -13,7 +13,7 @@ class Sushi extends Component {
   }
 
   render(){
-
+    const { sushi } =  this.props
     return (
       <div className="sushi">
         <div className="plate" 
@@ -23,11 +23,11 @@ class Sushi extends Component {
             false ?
               null
             :
-              <img src={this.props.sushi.img_url } width="100%" />
+              <img src={sushi.img_url } alt={sushi} width="100%" />
           }
         </div>
         <h4 className="sushi-details">
-          {/* Give me a name! */} - ${/* Give me a price! */}
+          {sushi.name} - ${sushi.price} - {sushi.id}
         </h4>
       </div>
     )
