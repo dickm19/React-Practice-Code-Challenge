@@ -8,8 +8,16 @@ class Sushi extends Component {
 
   eatSushi = () => {
     this.setState({
-      eaten: !this.state.eaten
+      eaten: true
     })
+  }
+
+  clickHandler = () => {
+    if (this.state.eaten === false && this.props.moneyLeftOver - this.props.sushi.price > 0) {
+      this.eatSushi()
+    // console.log(this.props.sushi)
+      this.props.tableStack(this.props.sushi)
+    }
   }
 
   render(){
@@ -17,21 +25,23 @@ class Sushi extends Component {
     return (
       <div className="sushi">
         <div className="plate" 
-             onClick={/* Give me a callback! */ null}>
+             onClick={
+               this.clickHandler
+               }>
           { 
             /* Tell me if this sushi has been eaten! */ 
-            false ?
+            this.state.eaten === true ?
               null
             :
-              <img src={sushi.img_url } alt={sushi} width="100%" />
+              <img src={sushi.img_url } alt={sushi.name} id={sushi.id} width="100%" />
           }
+          {/* {console.log(this.state.eaten)} */}
         </div>
         <h4 className="sushi-details">
           {sushi.name} - ${sushi.price} - {sushi.id}
         </h4>
       </div>
     )
-
   }
 }
 

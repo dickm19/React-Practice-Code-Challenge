@@ -16,11 +16,8 @@ class SushiContainer extends React.Component {
     })
   }
 
-
-
-
   renderSushis = () => {
-    return this.props.sushis.slice(this.state.start, this.state.end).map(sushiObj => <Sushi key={sushiObj.id} sushi={sushiObj}/>)
+    return this.props.sushis.slice(this.state.start, this.state.end).map(sushiObj => <Sushi key={sushiObj.id} sushi={sushiObj} tableStack={this.props.tableStack} moneyLeftOver={this.props.moneyLeftOver} />)
   }
 
   render(){
